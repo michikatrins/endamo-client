@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'home-cliente',
     loadChildren: () => import('./pages/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
-  }
+  },  {
+    path: 'create-product',
+    loadChildren: () => import('./pages/create-product/create-product.module').then( m => m.CreateProductPageModule)
+  },
+
 ];
 
 @NgModule({
