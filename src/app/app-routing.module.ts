@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'home-cliente',
     loadChildren: () => import('./pages/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
+  },  {
+    path: 'cargamasiva',
+    loadChildren: () => import('./pages/cargamasiva/cargamasiva.module').then( m => m.CargamasivaPageModule)
   }
+
 ];
 
 @NgModule({
