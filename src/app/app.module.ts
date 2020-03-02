@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { PapaParseModule } from 'ngx-papaparse';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,12 +25,16 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
     BrowserModule, 
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(), 
-    AppRoutingModule
+    AppRoutingModule,
+    PapaParseModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     FileChooser,
+    File,
+    FilePath,
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
