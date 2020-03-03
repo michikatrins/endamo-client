@@ -15,9 +15,13 @@ export class CreateProductPage implements OnInit {
   }
 
   saveProduct(name,price,amount){
-    // servicio
-    console.log(name.value,price.value,amount.value);
-    this.router.navigate(['/home-empresa']);
+    this.service.addProduct(name.value,price.value,amount.value).subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/home-empresa']);
+      },
+      err => console.log(err)
+    )
   }
 
 }
