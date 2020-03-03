@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>createProduct</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home-empresa"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content >
+  <ion-row justify-content-center align-items-center style="height: 90%">
+    <ion-col >
+      <ion-card >
+        <ion-card-content>
+          <ion-label class="lb-font">Nombre del producto</ion-label>
+          <ion-input type="text" placeholder="Monitor lcd"  autofocus="true" required="true" #name></ion-input>
+          <ion-label class="lb-font">Precio</ion-label>
+          <ion-input type="number" placeholder="1200.00" required="true" #price></ion-input>
+          <ion-label class="lb-font">Cantidad</ion-label>
+          <ion-input type="number" placeholder="8" required="true" #amount></ion-input>
+          <ion-button color="tertiary" expand="block" (click)="saveProduct(name,price,amount)" class="padd">
+            Guardar
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>
