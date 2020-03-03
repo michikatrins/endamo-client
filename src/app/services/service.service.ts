@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
 @Injectable({
@@ -7,86 +7,91 @@ import { Storage } from '@ionic/storage';
 })
 export class ServiceService {
 
+  private API_URL: string = 'https://endamo-api.herokuapp.com'
+
   token = null;
 
-  constructor(private http: HttpClient, private storage: Storage) { }
+  constructor(private http: HttpClient, 
+              private storage: Storage) { }            
 
-  login(email: string, password: string) {
-    const data = { email, password };
+  login(data) {
 
     return new Promise(resolve => {
-      this.http.post('',data)
+      this.http.post('http://endamo-api.herokuapp.com/login',data)
       .subscribe(resp => {
-        console.log(resp);
-        /*
-          if(loginCorrecto)
-          {
-            //si los datos son correctos, se guarda la informacion en el local storage
-            this.storage.set('token',ID);
-            this.storage.set('isClient', 1 cliente 0 empresa)
-            resolve(true);
-          }
-          else
-          {
-            this.token = null;
-            this.storage.clear();
-            resolve(false);
-          }
-        */
+          
+        if(resp[0])
+        {
+          //si los datos son correctos, se guarda la informacion en el local storage
+          this.storage.set('correo',data.email);
+          resolve(true);
+        }
+        else
+        {
+          this.token = null;
+          this.storage.clear();
+          resolve(false);
+        }
       });
     });
 
   }
 
-  registro_cliente(name: string, email: string, password: string, avatar: string) {
-    const data = {name, email, password, avatar};
-
+  registro_cliente(data) {
     return new Promise(resolve => {
-      this.http.post('',data)
+      this.http.post('http://endamo-api.herokuapp.com/register',data)
       .subscribe(resp => {
         console.log(resp);
-        /*
-          if(registroCorrecto)
-          {
-            //si los datos son correctos, se guarda la informacion en el local storage
-            this.storage.set('token',ID);
-            this.storage.set('isClient', 1 cliente)
-            resolve(true);
-          }
-          else
-          {
-            this.token = null;
-            this.storage.clear();
-            resolve(false);
-          }
-        */
+
+        if(resp[0])
+        {
+          //si los datos son correctos, se guarda la informacion en el local storage
+          this.storage.set('correo',data.email);
+          resolve(true);
+        }
+        else
+        {
+          this.token = null;
+          this.storage.clear();
+          resolve(false);
+        }      
       });
     });
   }
 
-  registro_empresa(name: string, email: string, password: string) {
-    const datos = {name, email, password};
-
+  registro_empresa(data) {
     return new Promise(resolve => {
-      this.http.post('',datos)
+      this.http.post('http://endamo-api.herokuapp.com/register',data)
       .subscribe(resp => {
         console.log(resp);
-        /*
-          if(registroCorrecto)
-          {
-            //si los datos son correctos, se guarda la informacion en el local storage
-            this.storage.set('token',ID);
-            this.storage.set('isEmpresa', 1 empresa)
-            resolve(true);
-          }
-          else
-          {
-            this.token = null;
-            this.storage.clear();
-            resolve(false);
-          }
-        */
+
+        if(resp[0])
+        {
+          //si los datos son correctos, se guarda la informacion en el local storage
+          this.storage.set('correo',data.email);
+          resolve(true);
+        }
+        else
+        {
+          this.token = null;
+          this.storage.clear();
+          resolve(false);
+        }      
       });
     });
   } 
-}
+
+  getID(){
+    return this.http.get(`${this.API_URL}/getID/${localStorage.getItem('correo')}`);
+  }
+
+
+  addProduct(name: string, price: number, amount: number){
+    const id = 2;
+    const data = {name, price, amount,id};
+    return this.http.post(`${this.API_URL}/addProduct`,data);
+  }
+
+  }
+   
+
