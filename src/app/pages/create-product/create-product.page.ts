@@ -15,6 +15,17 @@ export class CreateProductPage implements OnInit {
   }
 
   saveProduct(name,price,amount){
+    //Testing
+    let id;
+    this.service.getID().subscribe(
+      res => {
+        console.log(res);
+        id = res;
+      },
+      err => {
+        console.log(err);
+      }
+    )
     this.service.addProduct(name.value,price.value,amount.value).subscribe(
       res => {
         console.log(res);
