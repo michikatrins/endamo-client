@@ -21,4 +21,15 @@ export class ProductoServiceService {
     return this.http.delete(`${this.API_URL}eliminar/${id}`);
   }
 
+  // obtener un producto
+  getProducto(id: string){
+    return this.http.get(`${this.API_URL}producto/${id}`)
+  }
+
+  // actualizar producto
+  updateProducto(name: string, price: number, amount: number, id: number){
+    const data = {name, price, amount};
+    return this.http.put(`${this.API_URL}producto/${id}`,data);
+  }
+
 }

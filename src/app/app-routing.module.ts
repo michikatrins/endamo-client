@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'lista_productos',
     loadChildren: () => import('./pages/me-productos/me-productos.module').then( m => m.MeProductosPageModule)
   },
+  {
+    path: 'producto/editar/:id',
+    loadChildren: () => import('./pages/create-product/create-product.module').then(m => m.CreateProductPageModule)
+  },
 
 
 ];

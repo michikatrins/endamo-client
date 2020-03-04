@@ -12,25 +12,22 @@
     <div class="col-md-4" *ngFor="let producto of productos">
       <ion-card>
         <ion-card-header>
-          <ion-card-subtitle>Cantidad en stok: {{producto.cantidad}}</ion-card-subtitle>
+          <ion-card-subtitle>Cantidad en stok: {{producto.cantidad}}   
+                  
+                 <a [routerLink]="['/producto/editar', producto.idProducto]" class="button button-dark">Editar</a>
+                 
+                </ion-card-subtitle>
           <ion-card-title>{{producto.nombre}}</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
-          Q. {{producto.precio}}
+          <p> Q. {{producto.precio}}</p>
           <ion-grid>
             <ion-row>
               <ion-col>
                 <div>
-                  <ion-button color="success">
-                    <ion-icon name="cloud-upload-outline"></ion-icon>Editar
-                  </ion-button>
-                </div>
-              </ion-col>
-              <ion-col>
-                <div>
                   <ion-button color="danger" (click)="deleteProducto(producto.idProducto)">
-                    <ion-icon name="trash-outline"></ion-icon>Eliminar
+                  Eliminar
                   </ion-button>
                 </div>
               </ion-col>
