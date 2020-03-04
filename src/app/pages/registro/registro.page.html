@@ -43,7 +43,7 @@
                             <ion-label>Nombre   </ion-label>
                             <ion-input  name="nombre"
                                         type="text"
-                                        [(ngModel)] = "registerUser.name"
+                                        [(ngModel)] = "registerUser.username"
                                         required></ion-input>
                             </ion-item>
   
@@ -98,7 +98,7 @@
                             <ion-label>Nombre   </ion-label>
                             <ion-input  name="nombre"
                                         type="text"
-                                        [(ngModel)] = "registerEmpresa.name"
+                                        [(ngModel)] = "registerEmpresa.username"
                                         required></ion-input>
                             </ion-item>
   
@@ -109,10 +109,13 @@
                                         [(ngModel)] = "registerEmpresa.password"
                                         required></ion-input>
                             </ion-item>
-                            <ion-item>
-                                <button routerLink="/cargamasiva">
-                                    Ir a Carga Masiva
-                                </button>
+                            <ion-item color="transparent">
+                                <ion-button routerLink="/cargamasiva"
+                                            color="dark"
+                                            expand="full"
+                                            shape="round">
+                                    Carga masiva
+                                </ion-button>
                             </ion-item>
   
                         </ion-list>
@@ -158,8 +161,8 @@
                         <ion-list>
                             
                             <ion-item color="transparent">
-                            <ion-label>Email     </ion-label>
-                            <ion-input  name="email" 
+                            <ion-label>Username     </ion-label>
+                            <ion-input  name="name" 
                                         type="email"
                                         [(ngModel)] = "loginUser.email"
                                         required></ion-input>

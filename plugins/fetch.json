@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "cordova-plugin-filechooser": {
     "source": {
       "type": "registry",
@@ -87,6 +88,12 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-ionic-keyboard@^2.0.5"
+=======
+  "cordova-plugin-advanced-http": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-advanced-http"
+>>>>>>> 8d3790344c678bde922b55ff0493ecde5d98a90f
     },
     "is_top_level": true,
     "variables": {}

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Papa } from 'ngx-papaparse';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-cargamasiva',
@@ -13,7 +14,10 @@ export class CargamasivaPage implements OnInit {
   returnpath:string="";
   csvData:any[]=[];
   headerRow:any[]=[];
-  constructor(private fileChooser: FileChooser, private filePath:FilePath, private papa:Papa) { }
+  constructor(private fileChooser: FileChooser, 
+              private filePath:FilePath, 
+              private papa:Papa,
+              private service: ServiceService,) { }
 
   ngOnInit() {
   }
@@ -28,6 +32,7 @@ export class CargamasivaPage implements OnInit {
               let path = resolvednativepath.substring(0, resolvednativepath.lastIndexOf('/'));
               let file = resolvednativepath.substring(resolvednativepath.lastIndexOf('/')+1, resolvednativepath.length);
               this.readCsvData(path, file);
+              this.sendData();
             }
           )
         })
@@ -59,5 +64,20 @@ export class CargamasivaPage implements OnInit {
     )
 
   }
+
+  sendData(){
+    let name = "";
+    let price = 0.0;
+    let amount = 0;
+    this.csvData.forEach(function(value){
+
+      name = value[0];
+      price = value[1];
+      amount = value[2];
+
+      this.service.addProduct(name,price,amount);
+    })
+  }
+
 
 }

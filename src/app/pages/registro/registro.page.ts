@@ -63,14 +63,15 @@ export class RegistroPage implements OnInit {
   }
 
   registerUser = {
-    name: '',
+    nombre: '',
     email: '',
+    username: '',
     password: '',
     avatar: '/assets/avatars/av-1.png'
   }
 
   registerEmpresa = {
-    name: '',
+    username: '',
     email: '',
     password: ''
   }
@@ -133,10 +134,7 @@ export class RegistroPage implements OnInit {
       this.presentToast();
     else
     {
-      const valido = await this.service.registro_cliente( this.registerUser.name, 
-                                                          this.registerUser.email,
-                                                          this.registerUser.password, 
-                                                          this.registerUser.avatar);
+      const valido = await this.service.registro_cliente(this.registerUser);
 
       if(valido)
         this.route.navigate(['/home-cliente']);
@@ -150,12 +148,10 @@ export class RegistroPage implements OnInit {
       this.presentToast();
     else
     {
-      const valido = await this.service.registro_empresa( this.registerEmpresa.name, 
-                                                          this.registerEmpresa.email,
-                                                          this.registerEmpresa.password);
+      const valido = await this.service.registro_empresa(this.registerEmpresa);
 
       if(valido)
-        this.route.navigate(['/home-cliente']);
+        this.route.navigate(['/home-empresa']);
       else
         this.presentToast();
     }
@@ -166,7 +162,8 @@ export class RegistroPage implements OnInit {
       this.presentToast();
     else
     {
-      const valido = await this.service.login(this.loginUser.email, this.loginUser.password);
+      console.log(this.loginUser);
+      const valido = await this.service.login(this.loginUser);
 
       if(valido)
         this.route.navigate(['/home-cliente']);
