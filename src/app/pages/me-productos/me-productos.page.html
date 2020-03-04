@@ -8,14 +8,38 @@
 </ion-header>
 
 <ion-content>
-<div class="col-md-4" >
-  <div class="car text-center">
-    <div class="card-header">
-     
-    </div>
-    <div class="card-bady">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let producto of productos">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Cantidad en stok: {{producto.cantidad}}</ion-card-subtitle>
+          <ion-card-title>{{producto.nombre}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          Q. {{producto.precio}}
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div>
+                  <ion-button color="success">
+                    <ion-icon name="cloud-upload-outline"></ion-icon>Editar
+                  </ion-button>
+                </div>
+              </ion-col>
+              <ion-col>
+                <div>
+                  <ion-button color="danger" (click)="deleteProducto(producto.idProducto)">
+                    <ion-icon name="trash-outline"></ion-icon>Eliminar
+                  </ion-button>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
 
     </div>
   </div>
-</div>
+
 </ion-content>

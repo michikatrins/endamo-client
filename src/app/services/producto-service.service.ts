@@ -13,7 +13,12 @@ export class ProductoServiceService {
   // lista todos los productos
   listarProducto() {
    var empresa = 2;
-   return this.http.get(`${this.API_URL}listaProdutos/'${empresa}`);
+   return this.http.get(`${this.API_URL}listaProdutos/${empresa}`);
+  }
+
+  // elimina los productos
+  deleteProducto(id: string){
+    return this.http.delete(`${this.API_URL}eliminar/${id}`);
   }
 
 }
