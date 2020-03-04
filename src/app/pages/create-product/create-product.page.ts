@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/services/service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductoServiceService } from '../../services/producto-service.service'
@@ -9,24 +9,27 @@ import { ProductoServiceService } from '../../services/producto-service.service'
 })
 export class CreateProductPage implements OnInit {
 
+  
+
   constructor(private service: ServiceService, private crud: ProductoServiceService, private router: Router, private activatedRoute: ActivatedRoute) { }
   edit: boolean = false;
+  producto: any = [];
   empresa = 2;
   ngOnInit() {
     const params = this.activatedRoute.snapshot.params;
-    if(params.id){
+    if (params.id) {
       this.crud.getProducto(params.id)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.edit = true;
-        },
-        err => console.log(err)
-      )
+        .subscribe(
+          res => {
+            this.producto = res[0];
+            this.edit = true;
+          },
+          err => console.log(err)
+        )
     }
   }
 
-  saveProduct(name,price,amount){
+  saveProduct(name, price, amount) {
     //Testing
     let id;
     this.service.getID().subscribe(
@@ -38,7 +41,7 @@ export class CreateProductPage implements OnInit {
         console.log(err);
       }
     )
-    this.service.addProduct(name.value,price.value,amount.value).subscribe(
+    this.service.addProduct(name.value, price.value, amount.value).subscribe(
       res => {
         console.log(res);
         this.router.navigate(['/home-empresa']);
@@ -47,15 +50,15 @@ export class CreateProductPage implements OnInit {
     )
   }
 
-  updateProducto(name,price,amount){
-    this.crud.updateProducto(name.value,price.value,amount.value, this.empresa )
-    .subscribe(
-      res => {
-        console.log(res);
-        this.router.navigate(['/lista_productos']);
-      },
-      err => console.log(err)
-    )
+  updateProducto(name, price, amount) {
+    this.crud.updateProducto(this.producto.idProducto, name.value, price.value, amount.value, this.empresa)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.router.navigate(['/lista_productos']);
+        },
+        err => console.log(err)
+      )
   }
 
 }

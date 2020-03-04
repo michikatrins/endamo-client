@@ -13,12 +13,12 @@
       <ion-card >
         <ion-card-content>
           <ion-label class="lb-font">Nombre del producto</ion-label>
-          <ion-input type="text" placeholder="Monitor lcd"  autofocus="true" required="true" #name></ion-input>
+          <ion-input type="text" placeholder="Monitor lcd 2"  autofocus="true" required="true" #name value={{producto.nombre}} ></ion-input>
           <ion-label class="lb-font">Precio</ion-label>
-          <ion-input type="number" placeholder="1200.00" required="true" #price></ion-input>
+          <ion-input type="number" placeholder="1200.00" required="true" #price value={{producto.precio}}></ion-input>
           <ion-label class="lb-font">Cantidad</ion-label>
-          <ion-input type="number" placeholder="8" required="true" #amount></ion-input>
-          <ion-button color="tertiary" expand="block" (click)="saveProduct(name,price,amount)" class="padd">
+          <ion-input type="number" placeholder="8" required="true" #amount value={{producto.cantidad}}></ion-input>
+          <ion-button color="tertiary" expand="block" (click)="edit ? updateProducto(name,price,amount) : saveProduct(name,price,amount)" class="padd">
             Guardar
           </ion-button>
         </ion-card-content>

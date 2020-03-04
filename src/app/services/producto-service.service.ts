@@ -27,9 +27,9 @@ export class ProductoServiceService {
   }
 
   // actualizar producto
-  updateProducto(name: string, price: number, amount: number, id: number){
+  updateProducto(idProducto: number, name: string, price: number, amount: number, id: number){
     const data = {name, price, amount};
-    return this.http.put(`${this.API_URL}producto/${id}`,data);
+    return this.http.put(`${this.API_URL}editar/producto/${idProducto}`,data);
   }
 
 }
