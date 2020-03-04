@@ -5,23 +5,33 @@ const routes: Routes = [
   { path: '', redirectTo: 'slides', pathMatch: 'full' },
   {
     path: 'slides',
-    loadChildren: () => import('./pages/slides/slides.module').then( m => m.SlidesPageModule)
+    loadChildren: () => import('./pages/slides/slides.module').then(m => m.SlidesPageModule)
   },
   {
     path: 'registro/:id',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
   },
   {
     path: 'home-empresa',
-    loadChildren: () => import('./pages/home-empresa/home-empresa.module').then( m => m.HomeEmpresaPageModule)
+    loadChildren: () => import('./pages/home-empresa/home-empresa.module').then(m => m.HomeEmpresaPageModule)
   },
   {
     path: 'home-cliente',
-    loadChildren: () => import('./pages/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
-  },  {
-    path: 'create-product',
-    loadChildren: () => import('./pages/create-product/create-product.module').then( m => m.CreateProductPageModule)
+    loadChildren: () => import('./pages/home-cliente/home-cliente.module').then(m => m.HomeClientePageModule)
   },
+  {
+    path: 'create-product',
+    loadChildren: () => import('./pages/create-product/create-product.module').then(m => m.CreateProductPageModule)
+  },
+  {
+    path: 'lista_productos',
+    loadChildren: () => import('./pages/me-productos/me-productos.module').then( m => m.MeProductosPageModule)
+  },
+  {
+    path: 'producto/editar/:id',
+    loadChildren: () => import('./pages/create-product/create-product.module').then(m => m.CreateProductPageModule)
+  },
+
 
 ];
 
