@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 export class ServiceService {
 
   private API_URL: string = 'https://endamo-api.herokuapp.com'
+  // private API_URL: string = 'http://localhost:3000'
 
   token = null;
 
@@ -91,6 +92,7 @@ export class ServiceService {
     const data = {name, price, amount,id};
     return this.http.post(`${this.API_URL}/addProduct`,data);
   }
+
 
   }
    
