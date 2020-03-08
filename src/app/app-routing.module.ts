@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
   },
   {
-    path: 'home-empresa',
-    loadChildren: () => import('./pages/home-empresa/home-empresa.module').then(m => m.HomeEmpresaPageModule)
-  },
-  {
     path: 'home-cliente',
     loadChildren: () => import('./pages/home-cliente/home-cliente.module').then(m => m.HomeClientePageModule)
   },

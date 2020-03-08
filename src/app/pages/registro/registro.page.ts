@@ -162,7 +162,6 @@ export class RegistroPage implements OnInit {
       this.presentToast();
     else
     {
-      console.log("datos a enviar:"+this.loginUser);
       const valido = await this.service.login(this.loginUser);
       
       if(valido["auth"]){
@@ -170,7 +169,7 @@ export class RegistroPage implements OnInit {
         if(valido["user"])
           this.route.navigate(['/home-cliente']);
         else
-          this.route.navigate(['/home-empresa']);    
+          this.route.navigate(['/lista_productos']);    
 
       }
       else

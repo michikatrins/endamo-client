@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { IonCard, IonGrid } from '@ionic/angular';
 import { ProductoServiceService } from '../../services/producto-service.service';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-me-productos',
   templateUrl: './me-productos.page.html',
@@ -8,23 +8,29 @@ import { ProductoServiceService } from '../../services/producto-service.service'
 })
 export class MeProductosPage implements OnInit {
   productos: any = [];
-  constructor(private crud: ProductoServiceService) { }
+
+  constructor(private crud: ProductoServiceService,
+              public toastController: ToastController) { }
 
   ngOnInit() {
     this.getProductos();
   }
 
+  async presentToast(mensaje) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      color: 'danger',
+      position: 'top',
+      duration: 2000
+    });
+    toast.present();
+  }
+
   getProductos() {
 
-    this.crud.listarProducto().subscribe(
-      res => {
-        console.log(res);
-        this.productos = res;
-      },
-      err => {
-        console.log(err)
-      }
-    );
+    this.crud.listarProducto().then(productos => {
+      this.productos = productos;
+    });
   }
 
   deleteProducto(id: string) {
@@ -34,7 +40,7 @@ export class MeProductosPage implements OnInit {
         res => {
           this.getProductos();
         },
-        err => console.log("error al eliminar" + err)
+        err => this.presentToast("Error al eliminar el producto")
       )
   }
 

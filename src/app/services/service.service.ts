@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Storage } from '@ionic/storage';
-import { async } from '@angular/core/testing';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,8 @@ export class ServiceService {
   correo;
   id;
 
-  constructor(private http: HttpClient, 
-              private storage: Storage) { }            
+  constructor(private http: HttpClient,
+              private storageService: StorageService) { }            
 
   login(data) {
 
@@ -28,12 +27,12 @@ export class ServiceService {
         if(resp["auth"])
         {
           //si los datos son correctos, se guarda la informacion en el local storage
-          this.storage.set('correo',data.email);
+          localStorage.setItem('correo',JSON.stringify(data.email))
           resolve(resp);
         }
         else
         {
-          this.storage.clear();
+          localStorage.clear();
           resolve(false);
         }
       });
@@ -50,12 +49,12 @@ export class ServiceService {
         if(resp["success"])
         {
           //si los datos son correctos, se guarda la informacion en el local storage
-          this.storage.set('correo',data.email);
+          localStorage.setItem('correo',JSON.stringify(data.email))
           resolve(true);
         }
         else
         {
-          this.storage.clear();
+          localStorage.clear();
           resolve(false);
         }      
       });
@@ -71,43 +70,52 @@ export class ServiceService {
         if(resp["success"])
         {
           //si los datos son correctos, se guarda la informacion en el local storage
-          this.storage.set('correo',data.email);
+          localStorage.setItem('correo',JSON.stringify(data.email))
           resolve(true);
         }
         else
         {
-          this.storage.clear();
+          localStorage.clear();
           resolve(false);
         }      
       });
     });
   }
           
-  async getID(){
-    const correo = await this.storage.get('correo');
-    this.correo = correo;
-    console.log(this.correo);
-
-    return new Promise(resolve =>{
-      this.http.get(`${this.API_URL}/getID/${this.correo}`).subscribe(data =>{
-        console.log(`${this.API_URL}/getID/${this.correo}`);
-        console.log(data);
-        resolve(data);
-      }, err => {
-        console.log(err);
-      })
+  getId = () => {
+    let promise = new Promise(resolve => {
+      this.http.get(`${this.API_URL}/getidempresa/${this.storageService.getCorreo()}`)
+      .subscribe(resp => {
+        resolve(resp["idEmpresa"]);
+      });
     });
+    return promise;
+  };
+
+  addPostProducto = (data) => {
+    return new Promise(resolve => {
+      this.http.post(`${this.API_URL}/addProduct`,data)
+      .subscribe(resp => {
+        console.log(resp);
+        resolve(resp);
+      });
+    });
+  };
+
+  addProduct = (name: string, price: number, amount: number) => {
+    let promise = new Promise(resolve => {
+      this.getId().then(id =>{
+        const data = { name, price, amount, id}
+        console.log(data);     
+        this.addPostProducto(data).then(resp =>{
+          console.log(resp);
+          resolve(resp);
+        })
+
+      })      
+    });
+    return promise;
   }
-
-
-  async addProduct(name: string, price: number, amount: number){
-    let id = await this.getID();
-    this.id = id;
-    console.log(this.id);
-    const data = {name, price, amount,id};
-    return this.http.post(`${this.API_URL}/addProduct`,data);
-  }
-
 
 }
    
