@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,10 @@ import { Storage } from '@ionic/storage';
 export class ServiceService {
 
   private API_URL: string = 'https://endamo-api.herokuapp.com'
-  // private API_URL: string = 'http://localhost:3000'
+  private API_URL2: string = 'http://localhost:3000'
 
-  token = null;
+  correo;
+  id;
 
   constructor(private http: HttpClient, 
               private storage: Storage) { }            
@@ -27,11 +29,10 @@ export class ServiceService {
         {
           //si los datos son correctos, se guarda la informacion en el local storage
           this.storage.set('correo',data.email);
-          resolve(true);
+          resolve(resp);
         }
         else
         {
-          this.token = null;
           this.storage.clear();
           resolve(false);
         }
@@ -54,7 +55,6 @@ export class ServiceService {
         }
         else
         {
-          this.token = null;
           this.storage.clear();
           resolve(false);
         }      
@@ -76,26 +76,39 @@ export class ServiceService {
         }
         else
         {
-          this.token = null;
           this.storage.clear();
           resolve(false);
         }      
       });
     });
   }
-            
-  getID(){
-    return this.http.get(`${this.API_URL}/getID/${localStorage.getItem('correo')}`);
+          
+  async getID(){
+    const correo = await this.storage.get('correo');
+    this.correo = correo;
+    console.log(this.correo);
+
+    return new Promise(resolve =>{
+      this.http.get(`${this.API_URL}/getID/${this.correo}`).subscribe(data =>{
+        console.log(`${this.API_URL}/getID/${this.correo}`);
+        console.log(data);
+        resolve(data);
+      }, err => {
+        console.log(err);
+      })
+    });
   }
 
 
-  addProduct(name: string, price: number, amount: number){
-    const id = this.getID();
+  async addProduct(name: string, price: number, amount: number){
+    let id = await this.getID();
+    this.id = id;
+    console.log(this.id);
     const data = {name, price, amount,id};
     return this.http.post(`${this.API_URL}/addProduct`,data);
   }
 
 
-  }
+}
    
 

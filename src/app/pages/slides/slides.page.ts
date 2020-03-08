@@ -32,17 +32,9 @@ export class SlidesPage implements OnInit {
 
     /* se verifica si existen datos en el storage, si existen se redirecciona a las pantallas
     de usuario correspondiente */
-    this.storage.get('token').then(token => {
+    this.storage.get('correo').then(correo => {
 
-      if(token != null){
-
-        this.storage.get('isClient').then(isClient => {
-          
-          if(isClient === '1')
-            this.route.navigate(['home-cliente']);
-          else
-            this.route.navigate(['home-empresa']);
-        });
+      if(correo != null){
 
       }
     });

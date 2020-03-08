@@ -162,11 +162,17 @@ export class RegistroPage implements OnInit {
       this.presentToast();
     else
     {
-      console.log(this.loginUser);
+      console.log("datos a enviar:"+this.loginUser);
       const valido = await this.service.login(this.loginUser);
+      
+      if(valido["auth"]){
+        
+        if(valido["user"])
+          this.route.navigate(['/home-cliente']);
+        else
+          this.route.navigate(['/home-empresa']);    
 
-      if(valido)
-        this.route.navigate(['/home-cliente']);
+      }
       else
         this.presentToast();
     }

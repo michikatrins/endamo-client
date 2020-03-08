@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ServiceService } from 'src/app/services/service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductoServiceService } from '../../services/producto-service.service'
+import { ServiceService } from 'src/app/services/service.service';
+
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.page.html',
@@ -15,6 +16,7 @@ export class CreateProductPage implements OnInit {
   edit: boolean = false;
   producto: any = [];
   empresa = 2;
+
   ngOnInit() {
     const params = this.activatedRoute.snapshot.params;
     if (params.id) {
@@ -29,19 +31,9 @@ export class CreateProductPage implements OnInit {
     }
   }
 
-  saveProduct(name, price, amount) {
+  async saveProduct(name, price, amount) {
     //Testing
-    let id;
-    this.service.getID().subscribe(
-      res => {
-        console.log(res);
-        id = res;
-      },
-      err => {
-        console.log(err);
-      }
-    )
-    this.service.addProduct(name.value, price.value, amount.value).subscribe(
+    (await this.service.addProduct(name.value, price.value, amount.value)).subscribe(
       res => {
         console.log(res);
         this.router.navigate(['/home-empresa']);
