@@ -5,5 +5,18 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let producto of productos; index as i" size="6">
+        <ion-card (click)="ver(i)">
+          <ion-card-header>
+            <ion-card-title>{{producto.nombre}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p> Q. {{producto.precio}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
