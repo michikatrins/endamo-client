@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-home-cliente',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeClientePage implements OnInit {
 
-  constructor() { }
+  productos: any = [];
+
+  constructor(
+    private service: ServiceService
+  ) { }
 
   ngOnInit() {
+    this.service.obtenerProductos().subscribe(
+      res => {
+        this.productos = res
+      },
+      err => { }
+    )
   }
 
+  ver(indice) {
+    console.log("hola " + indice);
+  }
 }

@@ -117,6 +117,9 @@ export class ServiceService {
     return promise;
   }
 
+  obtenerProductos() {
+    return this.http.get(`${this.API_URL}/products`);
+  }
 }
-   
+
 
