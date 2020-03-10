@@ -1,6 +1,8 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ProductoServiceService } from '../../services/producto-service.service';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-me-productos',
   templateUrl: './me-productos.page.html',
@@ -10,9 +12,14 @@ export class MeProductosPage implements OnInit {
   productos: any = [];
 
   constructor(private crud: ProductoServiceService,
-              public toastController: ToastController) { }
+              public toastController: ToastController,
+              private router: Router) { }
 
   ngOnInit() {
+    this.getProductos();
+  }
+
+  ionViewWillEnter(){
     this.getProductos();
   }
 
@@ -27,7 +34,6 @@ export class MeProductosPage implements OnInit {
   }
 
   getProductos() {
-
     this.crud.listarProducto().then(productos => {
       this.productos = productos;
     });
@@ -43,5 +49,11 @@ export class MeProductosPage implements OnInit {
         err => this.presentToast("Error al eliminar el producto")
       )
   }
+
+  addProduct(){
+    this.router.navigate(['/create-product']);
+  }
+
+
 
 }
