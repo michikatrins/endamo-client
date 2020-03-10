@@ -38,7 +38,7 @@ export class CreateProductPage implements OnInit {
   async presentToast(mensaje) {
     const toast = await this.toastController.create({
       message: mensaje,
-      color: 'danger',
+      color: 'warning',
       position: 'top',
       duration: 2000
     });
