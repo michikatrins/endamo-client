@@ -447,7 +447,18 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n"
+module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/pages/detalle-producto/detalle-producto.page.html":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/pages/detalle-producto/detalle-producto.page.html ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>{{producto.nombre}}</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"dismiss()\">\n        Cerrar\n      </ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-card>\n    <img [src]=\"producto.img\" />\n    <ion-card-header>\n      <ion-card-title>Q. {{producto.precio}}</ion-card-title>\n      <ion-card-subtitle>Existencias: {{producto.cantidad}}</ion-card-subtitle>\n    </ion-card-header>\n    <ion-card-content>\n      <ion-grid>\n        <ion-row>\n          <ion-col>\n            <p>{{producto.descripcion}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col size-xs=\"2\">\n            <ion-input type=\"number\" [(ngModel)]=\"cantidad\" [(max)]=\"producto.cantidad\" min=\"0\"></ion-input>\n          </ion-col>\n          <ion-col size-xs=\"5\">\n            <ion-button>Comprar</ion-button>\n          </ion-col>\n          <ion-col size-xs=\"5\">\n            <ion-button>Cancelar</ion-button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-card-content>\n  </ion-card>\n</ion-content>"
 
 /***/ }),
 
@@ -475,19 +486,27 @@ var routes = [
     },
     {
         path: 'registro/:id',
-        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-registro-registro-module */ "pages-registro-registro-module").then(__webpack_require__.bind(null, /*! ./pages/registro/registro.module */ "./src/app/pages/registro/registro.module.ts")).then(function (m) { return m.RegistroPageModule; }); }
-    },
-    {
-        path: 'home-empresa',
-        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-home-empresa-home-empresa-module */ "pages-home-empresa-home-empresa-module").then(__webpack_require__.bind(null, /*! ./pages/home-empresa/home-empresa.module */ "./src/app/pages/home-empresa/home-empresa.module.ts")).then(function (m) { return m.HomeEmpresaPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | pages-registro-registro-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-registro-registro-module")]).then(__webpack_require__.bind(null, /*! ./pages/registro/registro.module */ "./src/app/pages/registro/registro.module.ts")).then(function (m) { return m.RegistroPageModule; }); }
     },
     {
         path: 'home-cliente',
-        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-home-cliente-home-cliente-module */ "pages-home-cliente-home-cliente-module").then(__webpack_require__.bind(null, /*! ./pages/home-cliente/home-cliente.module */ "./src/app/pages/home-cliente/home-cliente.module.ts")).then(function (m) { return m.HomeClientePageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | pages-home-cliente-home-cliente-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-home-cliente-home-cliente-module")]).then(__webpack_require__.bind(null, /*! ./pages/home-cliente/home-cliente.module */ "./src/app/pages/home-cliente/home-cliente.module.ts")).then(function (m) { return m.HomeClientePageModule; }); }
+    },
+    {
+        path: 'create-product',
+        loadChildren: function () { return Promise.all(/*! import() | pages-create-product-create-product-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-create-product-create-product-module")]).then(__webpack_require__.bind(null, /*! ./pages/create-product/create-product.module */ "./src/app/pages/create-product/create-product.module.ts")).then(function (m) { return m.CreateProductPageModule; }); }
+    },
+    {
+        path: 'lista_productos',
+        loadChildren: function () { return Promise.all(/*! import() | pages-me-productos-me-productos-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-me-productos-me-productos-module")]).then(__webpack_require__.bind(null, /*! ./pages/me-productos/me-productos.module */ "./src/app/pages/me-productos/me-productos.module.ts")).then(function (m) { return m.MeProductosPageModule; }); }
+    },
+    {
+        path: 'producto/editar/:id',
+        loadChildren: function () { return Promise.all(/*! import() | pages-create-product-create-product-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-create-product-create-product-module")]).then(__webpack_require__.bind(null, /*! ./pages/create-product/create-product.module */ "./src/app/pages/create-product/create-product.module.ts")).then(function (m) { return m.CreateProductPageModule; }); }
     },
     {
         path: 'cargamasiva',
-        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-cargamasiva-cargamasiva-module */ "pages-cargamasiva-cargamasiva-module").then(__webpack_require__.bind(null, /*! ./pages/cargamasiva/cargamasiva.module */ "./src/app/pages/cargamasiva/cargamasiva.module.ts")).then(function (m) { return m.CargamasivaPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | pages-cargamasiva-cargamasiva-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-cargamasiva-cargamasiva-module")]).then(__webpack_require__.bind(null, /*! ./pages/cargamasiva/cargamasiva.module */ "./src/app/pages/cargamasiva/cargamasiva.module.ts")).then(function (m) { return m.CargamasivaPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -601,6 +620,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
 /* harmony import */ var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/social-sharing/ngx */ "./node_modules/@ionic-native/social-sharing/ngx/index.js");
 /* harmony import */ var ngx_papaparse__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-papaparse */ "./node_modules/ngx-papaparse/fesm5/ngx-papaparse.js");
+/* harmony import */ var _pages_detalle_producto_detalle_producto_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./pages/detalle-producto/detalle-producto.module */ "./src/app/pages/detalle-producto/detalle-producto.module.ts");
+
 
 
 
@@ -630,7 +651,8 @@ var AppModule = /** @class */ (function () {
                 _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot(),
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
-                ngx_papaparse__WEBPACK_IMPORTED_MODULE_15__["PapaParseModule"]
+                ngx_papaparse__WEBPACK_IMPORTED_MODULE_15__["PapaParseModule"],
+                _pages_detalle_producto_detalle_producto_module__WEBPACK_IMPORTED_MODULE_16__["DetalleProductoPageModule"]
             ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
@@ -645,6 +667,148 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/detalle-producto/detalle-producto-routing.module.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/pages/detalle-producto/detalle-producto-routing.module.ts ***!
+  \***************************************************************************/
+/*! exports provided: DetalleProductoPageRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleProductoPageRoutingModule", function() { return DetalleProductoPageRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _detalle_producto_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./detalle-producto.page */ "./src/app/pages/detalle-producto/detalle-producto.page.ts");
+
+
+
+
+var routes = [
+    {
+        path: '',
+        component: _detalle_producto_page__WEBPACK_IMPORTED_MODULE_3__["DetalleProductoPage"]
+    }
+];
+var DetalleProductoPageRoutingModule = /** @class */ (function () {
+    function DetalleProductoPageRoutingModule() {
+    }
+    DetalleProductoPageRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+            exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+        })
+    ], DetalleProductoPageRoutingModule);
+    return DetalleProductoPageRoutingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/detalle-producto/detalle-producto.module.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/pages/detalle-producto/detalle-producto.module.ts ***!
+  \*******************************************************************/
+/*! exports provided: DetalleProductoPageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleProductoPageModule", function() { return DetalleProductoPageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _detalle_producto_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./detalle-producto-routing.module */ "./src/app/pages/detalle-producto/detalle-producto-routing.module.ts");
+/* harmony import */ var _detalle_producto_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./detalle-producto.page */ "./src/app/pages/detalle-producto/detalle-producto.page.ts");
+
+
+
+
+
+
+
+var DetalleProductoPageModule = /** @class */ (function () {
+    function DetalleProductoPageModule() {
+    }
+    DetalleProductoPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
+                _detalle_producto_routing_module__WEBPACK_IMPORTED_MODULE_5__["DetalleProductoPageRoutingModule"]
+            ],
+            declarations: [_detalle_producto_page__WEBPACK_IMPORTED_MODULE_6__["DetalleProductoPage"]]
+        })
+    ], DetalleProductoPageModule);
+    return DetalleProductoPageModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/detalle-producto/detalle-producto.page.scss":
+/*!*******************************************************************!*\
+  !*** ./src/app/pages/detalle-producto/detalle-producto.page.scss ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL2RldGFsbGUtcHJvZHVjdG8vZGV0YWxsZS1wcm9kdWN0by5wYWdlLnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/pages/detalle-producto/detalle-producto.page.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/pages/detalle-producto/detalle-producto.page.ts ***!
+  \*****************************************************************/
+/*! exports provided: DetalleProductoPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleProductoPage", function() { return DetalleProductoPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+var DetalleProductoPage = /** @class */ (function () {
+    function DetalleProductoPage(modalController) {
+        this.modalController = modalController;
+        this.cantidad = 1;
+    }
+    DetalleProductoPage.prototype.ngOnInit = function () {
+    };
+    DetalleProductoPage.prototype.dismiss = function () {
+        this.modalController.dismiss({
+            'dismissed': true
+        });
+    };
+    DetalleProductoPage.ctorParameters = function () { return [
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] }
+    ]; };
+    DetalleProductoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-detalle-producto',
+            template: __webpack_require__(/*! raw-loader!./detalle-producto.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/detalle-producto/detalle-producto.page.html"),
+            styles: [__webpack_require__(/*! ./detalle-producto.page.scss */ "./src/app/pages/detalle-producto/detalle-producto.page.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]])
+    ], DetalleProductoPage);
+    return DetalleProductoPage;
 }());
 
 
@@ -712,7 +876,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\gomez\Documents\Downloads\USAC\endamo-client\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/george/Proyectos/endamo-client/src/main.ts */"./src/main.ts");
 
 
 /***/ })

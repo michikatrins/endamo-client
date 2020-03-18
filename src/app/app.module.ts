@@ -15,17 +15,20 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { PapaParseModule } from 'ngx-papaparse';
+import { DetalleProductoPageModule } from './pages/detalle-producto/detalle-producto.module';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     HttpClientModule,
-    BrowserModule, 
+    BrowserModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule,
-    PapaParseModule
+    PapaParseModule,
+    DetalleProductoPageModule
   ],
   providers: [
     StatusBar,
@@ -38,4 +41,4 @@ import { PapaParseModule } from 'ngx-papaparse';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

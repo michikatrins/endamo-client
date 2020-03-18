@@ -401,6 +401,266 @@ var findCheckedOption = function (el, tagName) {
 
 
 
+/***/ }),
+
+/***/ "./src/app/services/producto-service.service.ts":
+/*!******************************************************!*\
+  !*** ./src/app/services/producto-service.service.ts ***!
+  \******************************************************/
+/*! exports provided: ProductoServiceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductoServiceService", function() { return ProductoServiceService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var src_app_services_storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/storage.service */ "./src/app/services/storage.service.ts");
+
+
+
+
+var ProductoServiceService = /** @class */ (function () {
+    function ProductoServiceService(http, storageService) {
+        var _this = this;
+        this.http = http;
+        this.storageService = storageService;
+        this.API_URL = 'https://endamo-api.herokuapp.com';
+        this.API_URL2 = 'http://localhost:3000/';
+        this.correo = '';
+        this.getId = function () {
+            var promise = new Promise(function (resolve) {
+                _this.http.get(_this.API_URL + "/getidempresa/" + _this.storageService.getCorreo())
+                    .subscribe(function (resp) {
+                    resolve(resp);
+                });
+            });
+            return promise;
+        };
+        this.getProductos = function (empresa) {
+            var promise = new Promise(function (resolve) {
+                _this.http.get(_this.API_URL + "/listaProdutos/" + empresa["idEmpresa"])
+                    .subscribe(function (resp) {
+                    resolve(resp);
+                });
+            });
+            return promise;
+        };
+        // lista todos los productos
+        this.listarProducto = function () {
+            var promise = new Promise(function (resolve) {
+                _this.getId().then(function (idEmpresa) {
+                    _this.getProductos(idEmpresa).then(function (productos) {
+                        resolve(productos);
+                    });
+                });
+            });
+            return promise;
+        };
+    }
+    // elimina los productos
+    ProductoServiceService.prototype.deleteProducto = function (id) {
+        return this.http.delete(this.API_URL + "/eliminar/" + id);
+    };
+    // obtener un producto
+    ProductoServiceService.prototype.getProducto = function (id) {
+        return this.http.get(this.API_URL + "/producto/" + id);
+    };
+    // actualizar producto
+    ProductoServiceService.prototype.updateProducto = function (idProducto, name, price, amount) {
+        var data = { name: name, price: price, amount: amount };
+        return this.http.put(this.API_URL + "/editar/producto/" + idProducto, data);
+    };
+    ProductoServiceService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+        { type: src_app_services_storage_service__WEBPACK_IMPORTED_MODULE_3__["StorageService"] }
+    ]; };
+    ProductoServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+            src_app_services_storage_service__WEBPACK_IMPORTED_MODULE_3__["StorageService"]])
+    ], ProductoServiceService);
+    return ProductoServiceService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/service.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/services/service.service.ts ***!
+  \*********************************************/
+/*! exports provided: ServiceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServiceService", function() { return ServiceService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./storage.service */ "./src/app/services/storage.service.ts");
+
+
+
+
+var ServiceService = /** @class */ (function () {
+    function ServiceService(http, storageService) {
+        var _this = this;
+        this.http = http;
+        this.storageService = storageService;
+        this.API_URL = 'https://endamo-api.herokuapp.com';
+        this.API_URL2 = 'http://localhost:3000';
+        this.getId = function () {
+            var promise = new Promise(function (resolve) {
+                _this.http.get(_this.API_URL + "/getidempresa/" + _this.storageService.getCorreo())
+                    .subscribe(function (resp) {
+                    resolve(resp["idEmpresa"]);
+                });
+            });
+            return promise;
+        };
+        this.addPostProducto = function (data) {
+            return new Promise(function (resolve) {
+                _this.http.post(_this.API_URL + "/addProduct", data)
+                    .subscribe(function (resp) {
+                    console.log(resp);
+                    resolve(resp);
+                });
+            });
+        };
+        this.addProduct = function (name, price, amount) {
+            var promise = new Promise(function (resolve) {
+                _this.getId().then(function (id) {
+                    var data = { name: name, price: price, amount: amount, id: id };
+                    console.log(data);
+                    _this.addPostProducto(data).then(function (resp) {
+                        console.log(resp);
+                        resolve(resp);
+                    });
+                });
+            });
+            return promise;
+        };
+    }
+    ServiceService.prototype.login = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post('http://endamo-api.herokuapp.com/login', data)
+                .subscribe(function (resp) {
+                console.log(resp);
+                if (resp["auth"]) {
+                    //si los datos son correctos, se guarda la informacion en el local storage
+                    localStorage.setItem('correo', JSON.stringify(data.email));
+                    resolve(resp);
+                }
+                else {
+                    localStorage.clear();
+                    resolve(false);
+                }
+            });
+        });
+    };
+    ServiceService.prototype.registro_cliente = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post('http://endamo-api.herokuapp.com/register', data)
+                .subscribe(function (resp) {
+                console.log(resp["success"]);
+                if (resp["success"]) {
+                    //si los datos son correctos, se guarda la informacion en el local storage
+                    localStorage.setItem('correo', JSON.stringify(data.email));
+                    resolve(true);
+                }
+                else {
+                    localStorage.clear();
+                    resolve(false);
+                }
+            });
+        });
+    };
+    ServiceService.prototype.registro_empresa = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post('http://endamo-api.herokuapp.com/register', data)
+                .subscribe(function (resp) {
+                console.log(resp);
+                if (resp["success"]) {
+                    //si los datos son correctos, se guarda la informacion en el local storage
+                    localStorage.setItem('correo', JSON.stringify(data.email));
+                    resolve(true);
+                }
+                else {
+                    localStorage.clear();
+                    resolve(false);
+                }
+            });
+        });
+    };
+    ServiceService.prototype.obtenerProductos = function () {
+        return this.http.get(this.API_URL + "/products");
+    };
+    ServiceService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+        { type: _storage_service__WEBPACK_IMPORTED_MODULE_3__["StorageService"] }
+    ]; };
+    ServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+            _storage_service__WEBPACK_IMPORTED_MODULE_3__["StorageService"]])
+    ], ServiceService);
+    return ServiceService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/storage.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/services/storage.service.ts ***!
+  \*********************************************/
+/*! exports provided: StorageService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StorageService", function() { return StorageService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var StorageService = /** @class */ (function () {
+    function StorageService(http) {
+        this.http = http;
+        this.API_URL = 'https://endamo-api.herokuapp.com';
+        this.correo = '';
+    }
+    StorageService.prototype.getCorreo = function () {
+        return JSON.parse(localStorage.getItem('correo'));
+    };
+    StorageService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    ]; };
+    StorageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], StorageService);
+    return StorageService;
+}());
+
+
+
 /***/ })
 
 }]);
