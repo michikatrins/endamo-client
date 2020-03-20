@@ -13,7 +13,7 @@ export class RegistroPage implements OnInit {
 
   id = null;
 
-  @ViewChild('slidePrincipal', {static: true}) slides: IonSlides;
+  @ViewChild('slidePrincipal', { static: true }) slides: IonSlides;
 
   avatars = [
     {
@@ -76,10 +76,10 @@ export class RegistroPage implements OnInit {
     password: ''
   }
 
-  constructor(private activeRoute: ActivatedRoute, 
-              private service: ServiceService,
-              public toastController: ToastController,
-              private route: Router) { }
+  constructor(private activeRoute: ActivatedRoute,
+    private service: ServiceService,
+    public toastController: ToastController,
+    private route: Router) { }
 
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
@@ -88,7 +88,7 @@ export class RegistroPage implements OnInit {
   }
 
   /*Métodos de navegación*/
-  seleccionarAvatar(avatar){
+  seleccionarAvatar(avatar) {
     this.avatars.forEach(av => av.seleccionado = false);
     avatar.seleccionado = true;
     this.registerUser.avatar = avatar.img;
@@ -103,13 +103,11 @@ export class RegistroPage implements OnInit {
   mostrarRegistro() {
     this.slides.lockSwipes(false);
 
-    if(this.isUserSlide)
-    {
+    if (this.isUserSlide) {
       this.slides.slideTo(0);
       this.textButton = 'Registrar Empresa';
     }
-    else
-    {
+    else {
       this.slides.slideTo(1);
       this.textButton = 'Registrar Usuario';
     }
@@ -129,28 +127,26 @@ export class RegistroPage implements OnInit {
   }
 
   /*Métodos para consumir servicios e interactuar*/
-  async registrar_usuario(fRegistroUsuario: NgForm){
-    if(fRegistroUsuario.invalid)
+  async registrar_usuario(fRegistroUsuario: NgForm) {
+    if (fRegistroUsuario.invalid)
       this.presentToast();
-    else
-    {
+    else {
       const valido = await this.service.registro_cliente(this.registerUser);
 
-      if(valido)
+      if (valido)
         this.route.navigate(['/home-cliente']);
       else
         this.presentToast();
     }
   }
 
-  async registrar_empresa(fRegistroEmpresa: NgForm){
-    if(fRegistroEmpresa.invalid)
+  async registrar_empresa(fRegistroEmpresa: NgForm) {
+    if (fRegistroEmpresa.invalid)
       this.presentToast();
-    else
-    {
+    else {
       const valido = await this.service.registro_empresa(this.registerEmpresa);
 
-      if(valido)
+      if (valido)
         this.route.navigate(['/home-empresa']);
       else
         this.presentToast();
@@ -158,18 +154,18 @@ export class RegistroPage implements OnInit {
   }
 
   async login(fLogin: NgForm) {
-    if(fLogin.invalid)
+    if (fLogin.invalid)
       this.presentToast();
-    else
-    {
+    else {
       const valido = await this.service.login(this.loginUser);
-      
-      if(valido["auth"]){
-        
-        if(valido["user"])
+
+      if (valido["auth"]) {
+
+        if (valido["user"]) {
+          localStorage.setItem('nombre', valido['nombre']);
           this.route.navigate(['/home-cliente']);
-        else
-          this.route.navigate(['/lista_productos']);    
+        } else
+          this.route.navigate(['/lista_productos']);
 
       }
       else

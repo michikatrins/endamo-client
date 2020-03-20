@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from 'src/app/services/service.service';
+import { ModalController } from '@ionic/angular';
+import { DetalleProductoPage } from '../detalle-producto/detalle-producto.page';
+import { Producto } from 'src/app/models/producto.model';
+import { ConexionService } from 'src/app/services/conexion.service';
 
 @Component({
   selector: 'app-home-cliente',
@@ -8,22 +11,29 @@ import { ServiceService } from 'src/app/services/service.service';
 })
 export class HomeClientePage implements OnInit {
 
-  productos: any = [];
+  nombre: string = localStorage.getItem('nombre') || 'usuario';
+  productos: Producto[] = [];
 
   constructor(
-    private service: ServiceService
+    private conexion: ConexionService,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
-    this.service.obtenerProductos().subscribe(
-      res => {
-        this.productos = res
-      },
-      err => { }
-    )
+    this.conexion.obtenerProductos();
+    this.conexion.productos$.subscribe((productos: Producto[]) => {
+      this.productos = productos;
+    });
   }
 
-  ver(indice) {
-    console.log("hola " + indice);
+  async ver(indice: number) {
+    const modal = await this.modalController.create({
+      component: DetalleProductoPage,
+      componentProps: {
+        'producto': this.productos[indice]
+      }
+    });
+    return await modal.present();
   }
+
 }

@@ -1,20 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home-cliente</ion-title>
+    <ion-title>Hola, {{nombre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let producto of productos; index as i" size="6">
-        <ion-card (click)="ver(i)">
+      <ion-col *ngFor="let producto of productos; index as i" size-xs="12" size-sm="6" size-md="6" size-lg="4"
+        size-xl="3">
+        <ion-card (click)="ver(i)" class="ion-activatable ripple-parent" button=true class="tarjetaHome">
+          <ion-img [src]="producto.imagen" class="imagenHome"></ion-img>
           <ion-card-header>
             <ion-card-title>{{producto.nombre}}</ion-card-title>
+            <ion-card-subtitle>Q. {{producto.precio}}</ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content>
-            <p> Q. {{producto.precio}}</p>
-          </ion-card-content>
+          <!-- <ion-ripple-effect></ion-ripple-effect> -->
         </ion-card>
       </ion-col>
     </ion-row>

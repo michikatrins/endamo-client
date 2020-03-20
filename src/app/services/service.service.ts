@@ -118,7 +118,7 @@ export class ServiceService {
   }
 
   obtenerProductos() {
-    return this.http.get(`${this.API_URL}/products`);
+    return this.http.get(`${this.API_URL}/producto/listado`);
   }
 }
 

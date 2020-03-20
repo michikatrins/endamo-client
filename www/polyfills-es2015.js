@@ -6158,8 +6158,8 @@ window.__Zone_disable_customElements = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\gomez\Documents\Downloads\USAC\endamo-client\src\polyfills.ts */"./src/polyfills.ts");
-module.exports = __webpack_require__(/*! D:\gomez\Documents\Downloads\USAC\endamo-client\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+__webpack_require__(/*! /home/george/Proyectos/endamo-client/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /home/george/Proyectos/endamo-client/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 
 /***/ })
