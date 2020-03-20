@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from 'src/app/services/service.service';
 import { ModalController } from '@ionic/angular';
 import { DetalleProductoPage } from '../detalle-producto/detalle-producto.page';
 import { Producto } from 'src/app/models/producto.model';
+import { ConexionService } from 'src/app/services/conexion.service';
 
 @Component({
   selector: 'app-home-cliente',
@@ -11,21 +11,19 @@ import { Producto } from 'src/app/models/producto.model';
 })
 export class HomeClientePage implements OnInit {
 
+  nombre: string = localStorage.getItem('nombre') || 'usuario';
   productos: Producto[] = [];
-  ruta: string = '/assets/img/img.png';
 
   constructor(
-    private service: ServiceService,
+    private conexion: ConexionService,
     private modalController: ModalController
   ) { }
 
   ngOnInit() {
-    this.service.obtenerProductos().subscribe(
-      (res: Producto[]) => {
-        this.productos = res
-      },
-      err => { }
-    )
+    this.conexion.obtenerProductos();
+    this.conexion.productos$.subscribe((productos: Producto[]) => {
+      this.productos = productos;
+    });
   }
 
   async ver(indice: number) {

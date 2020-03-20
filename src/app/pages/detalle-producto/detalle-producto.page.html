@@ -10,10 +10,10 @@
 </ion-header>
 <ion-content>
   <ion-card>
-    <img [src]="producto.img" />
+    <img [src]="producto.imagen" />
     <ion-card-header>
       <ion-card-title>Q. {{producto.precio}}</ion-card-title>
-      <ion-card-subtitle>Existencias: {{producto.cantidad}}</ion-card-subtitle>
+      <ion-card-subtitle>Existencias: {{producto.cantidad - cantidad}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>

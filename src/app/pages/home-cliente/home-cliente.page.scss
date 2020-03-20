@@ -1,16 +1,13 @@
-ion-card {
+.tarjetaHome {
   display: flex;
   flex-direction: column;
   width: 100% !important;
+  height: 100% !important;
   margin: 0 !important;
 }
-ion-button {
-  width: 100% !important;
-  height: 100% !important;
-}
 
-ion-img {
-  height: 150px;
-  width: 150px;
-  align-self: center;
+.imagenHome {
+  height: 200px;
+  width: 200px;
+  align-self: center !important;
 }
