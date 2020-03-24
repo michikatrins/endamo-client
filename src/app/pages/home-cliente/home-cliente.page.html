@@ -7,6 +7,19 @@
 <ion-content>
   <ion-grid>
     <ion-row>
+      <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4"
+        size-xl="3">
+        <ion-select placeholder="Seleccionar filtro" [interfaceOptions]="customPopoverOptions" interface="popover" (ionChange)="select($event)">
+          <ion-select-option value="precio">Precio</ion-select-option>
+          <ion-select-option value="nombre">Nombre</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4"
+        size-xl="3">
+        <ion-searchbar type="{{searchbartype}}" [animated]="true" placeholder="{{product_filter}}" (ionChange)="search($event)" disabled="{{isOptionSelected}}"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="searchbartype=='text'">
       <ion-col *ngFor="let producto of productos; index as i" size-xs="12" size-sm="6" size-md="6" size-lg="4"
         size-xl="3">
         <ion-card (click)="ver(i)" class="ion-activatable ripple-parent" button=true class="tarjetaHome">

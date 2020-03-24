@@ -13,7 +13,20 @@ import { Router } from '@angular/router';
 export class HomeClientePage implements OnInit {
 
   nombre: string = localStorage.getItem('nombre') || 'usuario';
-  productos: Producto[] = [];
+  productos: Producto[] = [{nombre: "",
+    precio:0,
+    cantidad: 0,
+    descripcion: ",",
+    imagen: ","}];
+  searchTerm="";
+  searchbartype="text";
+  product_filter="Seleccione tipo de filtro";
+  isOptionSelected=true;
+  customPopoverOptions: any = {
+    header: 'Filtro',
+    subHeader: 'Seleccionar filtro',
+    message: 'para filtrar los productos'
+  };
 
   constructor(
     private conexion: ConexionService,
@@ -41,6 +54,23 @@ export class HomeClientePage implements OnInit {
   logout(){
     localStorage.clear();
     this.router.navigate([`registro/2`]);
+  }
+
+  select( event ) {
+    this.isOptionSelected=false;
+    this.searchTerm="";
+    if(event.detail.value=="precio") this.searchbartype="number";
+    else this.searchbartype="text";
+    this.product_filter="Filtrar por "+event.detail.value;
+  }
+
+  search( event ) {//filtrar resultados de cursos matriculados (Pipe)
+    if(this.product_filter=="precio"){
+      this.searchTerm = event.detail.value;
+    }
+    else{
+      this.searchTerm = event.detail.value;
+    }
   }
 
 }
