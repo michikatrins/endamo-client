@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { DetalleProductoPage } from '../detalle-producto/detalle-producto.page';
 import { Producto } from 'src/app/models/producto.model';
 import { ConexionService } from 'src/app/services/conexion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-cliente',
@@ -16,7 +17,8 @@ export class HomeClientePage implements OnInit {
 
   constructor(
     private conexion: ConexionService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,11 @@ export class HomeClientePage implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate([`registro/2`]);
   }
 
 }

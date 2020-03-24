@@ -162,6 +162,8 @@ export class RegistroPage implements OnInit {
       if (valido["auth"]) {
 
         if (valido["user"]) {
+          this.loginUser.email="";
+          this.loginUser.password="";
           localStorage.setItem('nombre', valido['nombre']);
           this.route.navigate(['/home-cliente']);
         } else
