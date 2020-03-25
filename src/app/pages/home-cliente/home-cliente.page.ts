@@ -13,11 +13,7 @@ import { Router } from '@angular/router';
 export class HomeClientePage implements OnInit {
 
   nombre: string = localStorage.getItem('nombre') || 'usuario';
-  productos: Producto[] = [{nombre: "",
-    precio:0,
-    cantidad: 0,
-    descripcion: ",",
-    imagen: ","}];
+  productos: Producto[] = [];
   searchTerm="";
   searchbartype="text";
   product_filter="Seleccione tipo de filtro";
@@ -41,11 +37,13 @@ export class HomeClientePage implements OnInit {
     });
   }
 
-  async ver(indice: number) {
+  async ver(id: number) {
     const modal = await this.modalController.create({
       component: DetalleProductoPage,
       componentProps: {
-        'producto': this.productos[indice]
+        'producto': this.productos.find((producto)=>{
+            return producto.id_producto===id;
+        })
       }
     });
     return await modal.present();
