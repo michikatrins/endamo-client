@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'cargamasiva',
     loadChildren: () => import('./pages/cargamasiva/cargamasiva.module').then( m => m.CargamasivaPageModule)
+  },
+  {
+    path: 'modificar-usuario',
+    loadChildren: () => import('./pages/modificar-usuario/modificar-usuario.module').then( m => m.ModificarUsuarioPageModule)
   }
 
 ];

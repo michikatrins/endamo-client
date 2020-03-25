@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ConsumoService {
 
+  //private url = 'https://localhost:3000/';
+
   private url = 'https://endamo-api.herokuapp.com/';
 
   constructor(private http: HttpClient) { }

@@ -19,7 +19,7 @@ export class ServiceService {
   login(data) {
 
     return new Promise(resolve => {
-      this.http.post('http://endamo-api.herokuapp.com/login',data)
+      this.http.post(`${this.API_URL}/login`,data)
       .subscribe(resp => {
 
         console.log(resp);
@@ -42,7 +42,7 @@ export class ServiceService {
 
   registro_cliente(data) {
     return new Promise(resolve => {
-      this.http.post('http://endamo-api.herokuapp.com/register',data)
+      this.http.post(`${this.API_URL}/register`,data)
       .subscribe(resp => {
         console.log(resp["success"]);
 
@@ -63,7 +63,7 @@ export class ServiceService {
 
   registro_empresa(data) {
     return new Promise(resolve => {
-      this.http.post('http://endamo-api.herokuapp.com/register',data)
+      this.http.post(`${this.API_URL}/register`,data)
       .subscribe(resp => {
         console.log(resp);
 
@@ -120,6 +120,26 @@ export class ServiceService {
   obtenerProductos() {
     return this.http.get(`${this.API_URL}/producto/listado`);
   }
+
+  getDataUser(email){
+    const data = {email};
+    return new Promise(resolve => {
+      this.http.post(`${this.API_URL}/usuario/getData`,data)
+      .subscribe(resp => {
+        resolve(resp);
+      });
+    });
+  }
+
+  modificarPerfil(data){
+    return new Promise(resolve => {
+      this.http.put(`${this.API_URL}/usuario/modificarUsuario`,data)
+      .subscribe(resp => {
+        resolve(resp);
+      });
+    });
+  }
+
 }
 
 

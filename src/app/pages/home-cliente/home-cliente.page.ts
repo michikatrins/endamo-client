@@ -71,4 +71,9 @@ export class HomeClientePage implements OnInit {
     }
   }
 
+  modificarPerfil(){
+    console.log('hola mundo')
+    this.router.navigate([`modificar-usuario`]);
+  }
+
 }
