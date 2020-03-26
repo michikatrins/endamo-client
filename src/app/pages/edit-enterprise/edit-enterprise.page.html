@@ -14,12 +14,12 @@
       <ion-card >
         <ion-card-content>
           <ion-label class="lb-font">Email</ion-label>
-          <ion-input type="text" value={{enterprise.email}} disabled></ion-input>
+          <ion-input type="text" [(ngModel)]=enterprise.email name="email" disabled></ion-input>
           <ion-label class="lb-font">Nombre</ion-label>
-          <ion-input type="number" required="true" autofocus="true" value={{enterprise.name}}></ion-input>
+          <ion-input type="text" required="true" autofocus="true" [(ngModel)]=enterprise.name name="name"></ion-input>
           <ion-label class="lb-font">Password</ion-label>
-          <ion-input type="number" required="true" value={{enterprise.password}}></ion-input>
-          <ion-button color="tertiary" expand="block" class="padd">
+          <ion-input type="text" required="true" [(ngModel)]=enterprise.password name ="pass"></ion-input>
+          <ion-button color="tertiary" expand="block" class="padd" (click)="updateData()">
             Guardar
           </ion-button>
         </ion-card-content>
