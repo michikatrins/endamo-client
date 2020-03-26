@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide=false>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Edit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row justify-content-center align-items-center style="height: 90%">
+    <ion-col >
+      <ion-card >
+        <ion-card-content>
+          <ion-label class="lb-font">Email</ion-label>
+          <ion-input type="text" value={{enterprise.email}} disabled></ion-input>
+          <ion-label class="lb-font">Nombre</ion-label>
+          <ion-input type="number" required="true" autofocus="true" value={{enterprise.name}}></ion-input>
+          <ion-label class="lb-font">Password</ion-label>
+          <ion-input type="number" required="true" value={{enterprise.password}}></ion-input>
+          <ion-button color="tertiary" expand="block" class="padd">
+            Guardar
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -11,8 +11,6 @@ import { ToastController } from '@ionic/angular';
 })
 export class CreateProductPage implements OnInit {
 
-  
-
   constructor(private service: ServiceService, 
               private crud: ProductoServiceService, 
               private router: Router, 
