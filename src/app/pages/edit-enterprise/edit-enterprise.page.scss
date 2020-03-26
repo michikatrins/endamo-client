@@ -1,0 +1,21 @@
+ion-input{
+    border-radius: 5px;
+    --background: rgb(219,219,219);
+    --padding-start: 5px;
+}
+ion-content {
+    --background: linear-gradient(to right, #2193b0, #6dd5ed);
+}
+
+ion-card {
+    --background: white;
+}
+
+.padd{
+    padding-top: 5px;
+}
+
+.lb-font{
+    font-size: 14px;
+    font-family: verdana;
+}

@@ -16,11 +16,11 @@ export class MeProductosPage implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.getProductos();
+    //this.getProductos();
   }
 
   ionViewWillEnter(){
-    this.getProductos();
+    //this.getProductos();
   }
 
   async presentToast(mensaje) {

@@ -11,8 +11,6 @@ import { ToastController } from '@ionic/angular';
 })
 export class CreateProductPage implements OnInit {
 
-  
-
   constructor(private service: ServiceService, 
               private crud: ProductoServiceService, 
               private router: Router, 
@@ -48,7 +46,7 @@ export class CreateProductPage implements OnInit {
   saveProduct(name, price, amount) {
     this.service.addProduct(name.value,price.value,amount.value).then( resp => {
       this.presentToast(resp["Response:"]);
-      this.router.navigate(['/lista_productos']);
+      this.router.navigate(['menu2/menu/lista_productos']);
     })
   }
 
@@ -57,7 +55,7 @@ export class CreateProductPage implements OnInit {
       .subscribe(
         res => {
           console.log(res);
-          this.router.navigate(['/lista_productos']);
+          this.router.navigate(['menu2/menu/lista_productos']);
         },
         err => console.log(err)
       )

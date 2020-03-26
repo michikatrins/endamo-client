@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/create-product/create-product.module').then(m => m.CreateProductPageModule)
   },
   {
-    path: 'lista_productos',
-    loadChildren: () => import('./pages/me-productos/me-productos.module').then( m => m.MeProductosPageModule)
-  },
-  {
     path: 'producto/editar/:id',
     loadChildren: () => import('./pages/create-product/create-product.module').then(m => m.CreateProductPageModule)
   },
@@ -34,6 +30,14 @@ const routes: Routes = [
   {
     path: 'modificar-usuario',
     loadChildren: () => import('./pages/modificar-usuario/modificar-usuario.module').then( m => m.ModificarUsuarioPageModule)
+  },
+  {
+    path: 'menu2',
+    loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'producto/editar/:id',
+    loadChildren: () => import('./pages/create-product/create-product.module').then(m => m.CreateProductPageModule)
   }
 
 ];

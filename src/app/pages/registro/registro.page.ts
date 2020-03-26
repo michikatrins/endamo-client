@@ -167,7 +167,7 @@ export class RegistroPage implements OnInit {
           localStorage.setItem('nombre', valido['nombre']);
           this.route.navigate(['/home-cliente']);
         } else
-          this.route.navigate(['/lista_productos']);
+          this.route.navigate(['/menu2']);
 
       }
       else
