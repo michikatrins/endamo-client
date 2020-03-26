@@ -4,6 +4,8 @@ import { DetalleProductoPage } from '../detalle-producto/detalle-producto.page';
 import { Producto } from 'src/app/models/producto.model';
 import { ConexionService } from 'src/app/services/conexion.service';
 import { Router } from '@angular/router';
+import { CartPage } from '../cart/cart.page';
+import { CartserviceService } from 'src/app/services/cartservice.service';
 
 @Component({
   selector: 'app-home-cliente',
@@ -52,6 +54,13 @@ export class HomeClientePage implements OnInit {
   logout(){
     localStorage.clear();
     this.router.navigate([`registro/2`]);
+  }
+
+  async viewCart() {
+    const modal = await this.modalController.create({
+      component: CartPage
+    });
+    return await modal.present();
   }
 
   select( event ) {

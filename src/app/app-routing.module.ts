@@ -38,7 +38,11 @@ const routes: Routes = [
   {
     path: 'producto/editar/:id',
     loadChildren: () => import('./pages/create-product/create-product.module').then(m => m.CreateProductPageModule)
+  },  {
+    path: 'cart',
+    loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
   }
+
 
 ];
 

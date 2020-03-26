@@ -30,10 +30,10 @@
             <ion-input type="number" [(ngModel)]="cantidad" [(max)]="producto.cantidad" min="0"></ion-input>
           </ion-col>
           <ion-col size-xs="5">
-            <ion-button>Comprar</ion-button>
+            <ion-button (click)="addToCart()" color="success"><ion-icon name="add-circle"></ion-icon></ion-button>
           </ion-col>
           <ion-col size-xs="5">
-            <ion-button>Cancelar</ion-button>
+            <ion-button (click)="dismiss()" color="danger">Cancelar</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

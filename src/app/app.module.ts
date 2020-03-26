@@ -16,6 +16,7 @@ import { File } from '@ionic-native/file/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { PapaParseModule } from 'ngx-papaparse';
 import { DetalleProductoPageModule } from './pages/detalle-producto/detalle-producto.module';
+import { CartPageModule } from './pages/cart/cart.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DetalleProductoPageModule } from './pages/detalle-producto/detalle-prod
     IonicModule.forRoot(),
     AppRoutingModule,
     PapaParseModule,
-    DetalleProductoPageModule
+    DetalleProductoPageModule,
+    CartPageModule
   ],
   providers: [
     StatusBar,
