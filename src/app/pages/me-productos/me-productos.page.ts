@@ -20,7 +20,7 @@ export class MeProductosPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    //this.getProductos();
+    this.getProductos();
   }
 
   async presentToast(mensaje) {

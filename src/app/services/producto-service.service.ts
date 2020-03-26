@@ -15,6 +15,7 @@ export class ProductoServiceService {
               private storageService: StorageService) { }
   
   getId = () => {
+    console.log(this.storageService.getCorreo());
     let promise = new Promise(resolve => {
       this.http.get(`${this.API_URL}/getidempresa/${this.storageService.getCorreo()}`)
       .subscribe(resp => {
@@ -26,7 +27,7 @@ export class ProductoServiceService {
 
   getProductos = (empresa) => {
     let promise = new Promise(resolve => {
-      this.http.get(`${this.API_URL}/listaProdutos/${empresa["idEmpresa"]}`)
+      this.http.get(`${this.API_URL}/listaProdutos/${empresa["id_empresa"]}`)
       .subscribe(resp => {
         resolve(resp);
       });
