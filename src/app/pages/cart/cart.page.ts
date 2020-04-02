@@ -28,7 +28,7 @@ export class CartPage implements OnInit {
   }
 
   removeFromCart(product){
-    let i;
+    let i:number;
     this.cart.find((value,index) =>{
       if(value==product) {
         i=index;
