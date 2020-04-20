@@ -11,35 +11,38 @@ import { ToastController } from '@ionic/angular';
 })
 export class EditEnterprisePage implements OnInit {
 
-  constructor(private services: ProductoServiceService,
-              private empresaService: EmpresaService,
-              public toastController: ToastController)  { }
-
   enterprise = {
     email : '',
     name: '',
     password: '' 
   }
 
+  public error: boolean = false;
+
+  constructor(public empresaService: EmpresaService,
+              public toastController: ToastController)  { }
+  
   ngOnInit() {
-    this.getData();
+    this.readData();
   }
 
-   getData(){
+   readData(){
     this.enterprise.email = localStorage.getItem('correo');
-    this.enterprise.email = this.enterprise.email.substr(1,this.enterprise.email.length-2)
-    this.empresaService.getData(this.enterprise.email).subscribe(
-      res => {
-        this.enterprise.name = res[0].nombre;
-        this.enterprise.password = res[0].password;
-      }
-    )
+    if (this.enterprise.email != undefined){
+      this.enterprise.email = this.enterprise.email.substr(1,this.enterprise.email.length-2)
+      this.empresaService.getData(this.enterprise.email).subscribe(
+        res => {
+          this.enterprise.name = res[0].nombre;
+          this.enterprise.password = res[0].password;
+        }
+      )
+    }
   }
 
   updateData(){
     this.empresaService.updateData(this.enterprise).subscribe(
       res => {
-          this.presentToast("Perfil modificado de forma exitosa.");
+        this.presentToast("Perfil modificado de forma exitosa.");
       },
       err => {
         this.presentToast("El perfil no pudo modificarse, intente nuevamente.");

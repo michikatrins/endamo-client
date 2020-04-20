@@ -32,6 +32,7 @@ export class CartPage implements OnInit {
     this.cart.find((value,index) =>{
       if(value==product) {
         i=index;
+        return true;
       }
     });
     this.cart.splice(i,1);

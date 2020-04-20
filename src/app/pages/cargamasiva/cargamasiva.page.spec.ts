@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CargamasivaPage } from './cargamasiva.page';
 
+/*
 describe('CargamasivaPage', () => {
   let component: CargamasivaPage;
   let fixture: ComponentFixture<CargamasivaPage>;
@@ -22,3 +23,4 @@ describe('CargamasivaPage', () => {
     expect(component).toBeTruthy();
   });
 });
+*/

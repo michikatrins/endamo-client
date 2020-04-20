@@ -1,7 +1,10 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
 
 import { EditEnterprisePage } from './edit-enterprise.page';
+import { EmpresaService } from 'src/app/services/empresa.service';
+import { HttpClientModule } from '@angular/common/http';
+import { of, throwError } from 'rxjs';
 
 describe('EditEnterprisePage', () => {
   let component: EditEnterprisePage;
@@ -9,8 +12,10 @@ describe('EditEnterprisePage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [ EditEnterprisePage ],
-      imports: [IonicModule.forRoot()]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [EmpresaService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(EditEnterprisePage);
@@ -18,7 +23,27 @@ describe('EditEnterprisePage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('When readData() is called', () =>  {
+    it('all should be fine ', () => {
+      component.readData();
+      expect(component.enterprise).toBeDefined();
+    });
   });
+
+  describe('When updateData() is called', () =>  {
+    
+    it('all should be fine ', () => {
+      spyOn(component.empresaService,'updateData').and.returnValue(of({ }));
+      component.updateData();
+      //expect(component.toastController);
+    });
+
+    it('should handler error', () => {
+      spyOn(component.empresaService,'updateData').and.returnValue(throwError({error:'Error while updating data'}));
+      component.updateData();
+      //expect(component.presentToast);  
+    });
+    
+  });
+  
 });
