@@ -13,12 +13,20 @@ export class ServiceService {
   correo;
   id;
 
-  constructor(public http: HttpClient,
-    private storageService: StorageService) { }
-
-  //agregar metodos de verificacion de datos de registro y login
+  constructor(
+    private http: HttpClient,
+    private storageService: StorageService
+  ) { }
 
   verificarLogin(data) {
+    return true;
+  }
+
+  verificarRegistroUsuario(data): boolean {
+    return true;
+  }
+
+  verificarRegistroEmpresa(data): boolean {
     return true;
   }
 

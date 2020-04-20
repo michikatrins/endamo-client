@@ -26,7 +26,6 @@ describe('ServiceService(login y registro)', () => {
 
   it('validar datos incorrectos', async function () {
     expect(service.verificarLogin(loginData)).toBe(true);
-    // ...
   });
 
 });
