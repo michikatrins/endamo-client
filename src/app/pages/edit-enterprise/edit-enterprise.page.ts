@@ -28,7 +28,7 @@ export class EditEnterprisePage implements OnInit {
 
    readData(){
     this.enterprise.email = localStorage.getItem('correo');
-    if (this.enterprise.email != undefined){
+    if(this.enterprise.email != null){
       this.enterprise.email = this.enterprise.email.substr(1,this.enterprise.email.length-2)
       this.empresaService.getData(this.enterprise.email).subscribe(
         res => {
@@ -36,7 +36,7 @@ export class EditEnterprisePage implements OnInit {
           this.enterprise.password = res[0].password;
         }
       )
-    }
+    } 
   }
 
   updateData(){

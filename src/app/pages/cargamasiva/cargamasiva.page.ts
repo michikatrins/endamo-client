@@ -14,10 +14,10 @@ export class CargamasivaPage implements OnInit {
   returnpath:string="";
   csvData:any[]=[];
   headerRow:any[]=[];
-  constructor(private fileChooser: FileChooser, 
-              private filePath:FilePath, 
-              private papa:Papa,
-              private service: ServiceService,) { }
+  constructor(public fileChooser: FileChooser, 
+              public filePath:FilePath, 
+              public papa:Papa,
+              public service: ServiceService,) { }
 
   ngOnInit() {
   }
