@@ -18,16 +18,56 @@ export class ServiceService {
     private storageService: StorageService
   ) { }
 
-  verificarLogin(data) {
-    return true;
+  rePassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+  reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  //correo,constrasena
+  verificarLogin(data): boolean {
+    if (data.email && data.password) {
+      if (
+        !(data.password.includes('select')) &&
+        !(data.password.includes('script')) &&
+        this.rePassword.test(data.password) &&
+        this.reEmail.test(data.email)
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 
+  //nombre,email,username,password,avatar
   verificarRegistroUsuario(data): boolean {
-    return true;
+    if (data.nombre && data.email && data.username && data.password) {
+      if (
+        !(data.password.includes('select')) &&
+        !(data.password.includes('script')) &&
+        !(data.email.includes('select')) &&
+        !(data.email.includes('script')) &&
+        this.rePassword.test(data.password) &&
+        this.reEmail.test(data.email)
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 
+  //username,email,password
   verificarRegistroEmpresa(data): boolean {
-    return true;
+    if (data.email && data.username && data.password) {
+      if (
+        !(data.password.includes('select')) &&
+        !(data.password.includes('script')) &&
+        !(data.email.includes('select')) &&
+        !(data.email.includes('script')) &&
+        this.rePassword.test(data.password) &&
+        this.reEmail.test(data.email)
+      ) {
+        return true;
+      }
+    }
+    return false;
   }
 
   login(data) {

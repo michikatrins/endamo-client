@@ -131,7 +131,7 @@ export class RegistroPage implements OnInit {
     if (fRegistroUsuario.invalid)
       this.presentToast('Los datos de registro son invalidos');
     else {
-      if (this.service.verificarRegistroUsuario('datos de cliente')) {
+      if (this.service.verificarRegistroUsuario(this.registerUser)) {
         const valido = await this.service.registro_cliente(this.registerUser);
         if (valido)
           this.route.navigate(['/home-cliente']);
@@ -148,7 +148,7 @@ export class RegistroPage implements OnInit {
     if (fRegistroEmpresa.invalid)
       this.presentToast('Los datos de registro son invalidos');
     else {
-      if (this.service.verificarRegistroEmpresa('datos de empresa')) {
+      if (this.service.verificarRegistroEmpresa(this.registerEmpresa)) {
         const valido = await this.service.registro_empresa(this.registerEmpresa);
         if (valido)
           this.route.navigate(['/home-empresa']);
@@ -164,7 +164,7 @@ export class RegistroPage implements OnInit {
     if (fLogin.invalid)
       this.presentToast('Los datos son invalidos para iniciar sesion');
     else {
-      if (this.service.verificarLogin('datos login')) {
+      if (this.service.verificarLogin(this.loginUser)) {
         const valido = await this.service.login(this.loginUser);
         if (valido["auth"]) {
           if (valido["user"]) {
