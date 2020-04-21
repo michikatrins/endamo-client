@@ -18,7 +18,6 @@ import { ModificarUsuarioPage } from './modificar-usuario.page';
 //     fixture.detectChanges();
 //   }));
 
-//   it('should create', () => {
 //     expect(component).toBeTruthy();
 //   });
 // });

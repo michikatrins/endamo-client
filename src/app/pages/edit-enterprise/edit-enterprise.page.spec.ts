@@ -1,7 +1,10 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
 
 import { EditEnterprisePage } from './edit-enterprise.page';
+import { EmpresaService } from 'src/app/services/empresa.service';
+import { HttpClientModule } from '@angular/common/http';
+import { of, throwError } from 'rxjs';
 
 // describe('EditEnterprisePage', () => {
 //   let component: EditEnterprisePage;
