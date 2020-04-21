@@ -17,6 +17,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { PapaParseModule } from 'ngx-papaparse';
 import { DetalleProductoPageModule } from './pages/detalle-producto/detalle-producto.module';
 import { CartPageModule } from './pages/cart/cart.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CartPageModule } from './pages/cart/cart.module';
     AppRoutingModule,
     PapaParseModule,
     DetalleProductoPageModule,
-    CartPageModule
+    CartPageModule,
+    FormsModule
   ],
   providers: [
     StatusBar,
