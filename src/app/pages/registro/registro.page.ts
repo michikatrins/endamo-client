@@ -131,6 +131,7 @@ export class RegistroPage implements OnInit {
     if (fRegistroUsuario.invalid)
       this.presentToast('Los datos de registro son invalidos');
     else {
+      console.log('a3');
       if (this.service.verificarRegistroUsuario(this.registerUser)) {
         const valido = await this.service.registro_cliente(this.registerUser);
         if (valido)

@@ -23,12 +23,13 @@ export class ServiceService {
 
   //correo,constrasena
   verificarLogin(data): boolean {
+    console.log(data);
     if (data.email && data.password) {
       if (
         !(data.password.includes('select')) &&
-        !(data.password.includes('script')) &&
-        this.rePassword.test(data.password) &&
-        this.reEmail.test(data.email)
+        !(data.password.includes('script'))
+        //this.rePassword.test(data.password) &&
+        //this.reEmail.test(data.email)
       ) {
         return true;
       }
@@ -38,7 +39,7 @@ export class ServiceService {
 
   //nombre,email,username,password,avatar
   verificarRegistroUsuario(data): boolean {
-    if (data.nombre && data.email && data.username && data.password) {
+    if (data.username && data.email && data.password) {
       if (
         !(data.password.includes('select')) &&
         !(data.password.includes('script')) &&
@@ -94,7 +95,7 @@ export class ServiceService {
 
   registro_cliente(data) {
     return new Promise(resolve => {
-      this.http.post(`${this.API_URL}/register`, data)
+      this.http.post(`${this.API_URL}/usuario/register`, data)
         .subscribe(resp => {
           console.log(resp["success"]);
 
@@ -113,7 +114,7 @@ export class ServiceService {
 
   registro_empresa(data) {
     return new Promise(resolve => {
-      this.http.post(`${this.API_URL}/register`, data)
+      this.http.post(`${this.API_URL}/empresa/register`, data)
         .subscribe(resp => {
           console.log(resp);
 
