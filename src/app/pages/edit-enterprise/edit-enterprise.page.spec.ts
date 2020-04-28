@@ -6,17 +6,10 @@ import { EmpresaService } from 'src/app/services/empresa.service';
 import { HttpClientModule } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 
-// describe('EditEnterprisePage', () => {
-//   let component: EditEnterprisePage;
-//   let fixture: ComponentFixture<EditEnterprisePage>;
+describe('EditEnterprisePage', () => {
+  let component: EditEnterprisePage;
+  let fixture: ComponentFixture<EditEnterprisePage>;
 
-<<<<<<< HEAD
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ EditEnterprisePage ],
-//       imports: [IonicModule.forRoot()]
-//     }).compileComponents();
-=======
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
@@ -24,19 +17,12 @@ import { of, throwError } from 'rxjs';
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [EmpresaService]
     }).compileComponents();
->>>>>>> origin/develop
 
-//     fixture = TestBed.createComponent(EditEnterprisePage);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   }));
+    fixture = TestBed.createComponent(EditEnterprisePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  }));
 
-<<<<<<< HEAD
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
-=======
   describe('When readData() is called', () =>  {
     it('all should be fine ', () => {
       component.readData();
@@ -61,4 +47,3 @@ import { of, throwError } from 'rxjs';
   });
   
 });
->>>>>>> origin/develop

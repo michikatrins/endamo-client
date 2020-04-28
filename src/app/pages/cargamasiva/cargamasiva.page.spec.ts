@@ -8,27 +8,10 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Papa } from 'ngx-papaparse';
 
-// describe('CargamasivaPage', () => {
-//   let component: CargamasivaPage;
-//   let fixture: ComponentFixture<CargamasivaPage>;
+describe('CargamasivaPage', () => {
+  let component: CargamasivaPage;
+  let fixture: ComponentFixture<CargamasivaPage>;
 
-<<<<<<< HEAD
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ CargamasivaPage ],
-//       imports: [IonicModule.forRoot()]
-//     }).compileComponents();
-
-//     fixture = TestBed.createComponent(CargamasivaPage);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   }));
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
-=======
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
@@ -55,4 +38,3 @@ import { Papa } from 'ngx-papaparse';
 
 });
 
->>>>>>> origin/develop

@@ -3,16 +3,6 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { EmpresaService } from './empresa.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 
-<<<<<<< HEAD
-// describe('EmpresaService', () => {
-//   beforeEach(() => TestBed.configureTestingModule({}));
-
-//   it('should be created', () => {
-//     const service: EmpresaService = TestBed.get(EmpresaService);
-//     expect(service).toBeTruthy();
-//   });
-// });
-=======
 describe('EmpresaService', () => {
   let injector: TestBed;
   let httpMock: HttpTestingController;
@@ -38,4 +28,3 @@ describe('EmpresaService', () => {
   });  
 
 });
->>>>>>> origin/develop
